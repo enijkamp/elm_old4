@@ -1,0 +1,16 @@
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2016 The MathWorks, Inc.
+                   R2016b (9.1.0.441655) 64-bit (glnxa64)
+                             September 7, 2016
+
+ 
+For online documentation, see http://www.mathworks.com/support
+For product information, visit www.mathworks.com.
+ 
+{Error: File:
+/home/enijkamp/elm_old/training/coop_net_code_gpu/exp_texture_512_13.m Line: 20
+Column: 42
+Character vector is not terminated properly.
+} 
+>> 
