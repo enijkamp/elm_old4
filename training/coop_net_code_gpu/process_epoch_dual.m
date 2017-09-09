@@ -1,4 +1,4 @@
-function  [net1,net2,gen_mats,syn_mats,z] = process_epoch_dual(opts, epoch, net1, net2, config)
+function [net1,net2,gen_mats,syn_mats,gen_mats_out,syn_mats_out,z] = process_epoch_dual(opts, epoch, net1, net2, config)
 
 %% GPU (en) %%
 if config.use_gpu
@@ -73,6 +73,11 @@ for t = 1:config.batchSize:size(imdb,4)
             imwrite((gen_mats(:,:,:,i)+config.mean_im)/256,[config.gen_im_folder,'gen_im',num2str(i),'.png']);
         end
     end
+    
+    %% TODO fix
+    gen_mats_out = gather(syn_mats);
+    
+    
 
     %% Step 2 update generator mats by descriptor net
     % synthesize image according to current weights 
@@ -157,6 +162,9 @@ for t = 1:config.batchSize:size(imdb,4)
             imwrite((syn_mats(:,:,:,k)+config.mean_im)/256,[config.syn_im_folder,'syn_im',num2str(k),'.png']);
         end
     end
+    
+    %% TODO fix
+    syn_mats_out = gather(syn_mats);
 
     %syn_mats = max(min(syn_mats+config.mean_im,255.99),0.01)/128 - 1;
     syn_mats = max(min(syn_mats+repmat(config.mean_im, 1, 1, 1, config.num_syn),255.99),0.01)/128 - 1;
@@ -166,13 +174,13 @@ for t = 1:config.batchSize:size(imdb,4)
     
     %% GPU (en) %%
     if config.use_gpu
-            res2 = vl_gan(net2, z, syn_mats, res2, ...
-                'accumulate', 0, ...
-                'disableDropout', 0, ...
-                'conserveMemory', opts.conserveMemory, ...
-                'backPropDepth', opts.backPropDepth, ...
-                'sync', opts.sync, ...
-                'cudnn', opts.cudnn) ;
+        res2 = vl_gan(net2, z, syn_mats, res2, ...
+            'accumulate', 0, ...
+            'disableDropout', 0, ...
+            'conserveMemory', opts.conserveMemory, ...
+            'backPropDepth', opts.backPropDepth, ...
+            'sync', opts.sync, ...
+            'cudnn', opts.cudnn) ;
     else
         res2 = vl_gan_cpu(net2, z, syn_mats, res2, ...
             'accumulate', 0, ...

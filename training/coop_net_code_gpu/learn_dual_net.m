@@ -126,11 +126,19 @@ function [net1,net2,gen_mats,syn_mats] = learn_dual_net(config, net1)
     save([config.trained_folder,'config.mat'],'config');
     
     loss = zeros(config.nIteration, 1);
+    loss2 = zeros(config.nIteration, 1);
     for epoch=1:config.nIteration
-        [net1, net2, gen_mats, syn_mats, z] = process_epoch_dual(opts,epoch,net1,net2,config);
+        [net1,net2,gen_mats,syn_mats,gen_mats_out,syn_mats_out,z] = process_epoch_dual(opts,epoch,net1,net2,config);
+        
+        % wrong loss?
         loss(epoch) = compute_loss(opts, syn_mats, net2, z, config);
         save([config.trained_folder,'loss.mat'],'loss');
         disp(['Loss: ', num2str(loss(epoch))]);
+        
+        % correct loss?
+        loss2(epoch) = compute_loss2(opts, syn_mats_out, gen_mats_out);
+        save([config.trained_folder,'loss2.mat'],'loss2');
+        disp(['Loss2: ', num2str(loss2(epoch))]);
     end
     
     learningTime = toc(learningTime);
@@ -140,6 +148,10 @@ function [net1,net2,gen_mats,syn_mats] = learn_dual_net(config, net1)
     secds = mod(learningTime, 60);
     fprintf('total learning time is %d hours / %d minutes / %.2f seconds.\n', hrs, mins, secds);
 
+end
+
+function loss = compute_loss2(opts, syn_mat, gen_mat)
+loss = mean(reshape(sqrt((gen_mat - syn_mat).^2), [], 1));
 end
 
 function loss = compute_loss(opts, syn_mat, net2_cpu, z, config)
