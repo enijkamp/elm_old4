@@ -1,0 +1,14 @@
+ 0 - 13
+langevin fix
+
+1 - 14
+gradient fix
+
+2 - 15
+4d matrix langevin
+
+3 - 16
+infer z
+
+4 - 17...
+params

@@ -1,0 +1,47 @@
+% % (17) bad - relevant 1
+% config.Delta2 = 0.3;
+% config.Gamma2 = [0.0003*ones(1,100), 0.0001*ones(1,100), 0.00005*ones(1,100), 0.00005*ones(1,100), 0.00001*ones(1,100)]; % decreased
+% config.refsig2 = 1;
+% config.s = 0.3;
+% config.real_ref = 1;
+% config.cap2 = 8;
+% 
+% % (18) good - relevant 2
+% config.Delta2 = 0.003; % decreased
+% config.Gamma2 = [0.0003*ones(1,100), 0.0001*ones(1,100), 0.00005*ones(1,100), 0.00005*ones(1,100), 0.00001*ones(1,100)];
+% config.refsig2 = 1;
+% config.s = 0.3;
+% config.real_ref = 1;
+% config.cap2 = 8;
+% 
+% % (19) best
+% config.Delta2 = 0.0000003; % decreased
+% config.Gamma2 = [0.0003*ones(1,100), 0.0001*ones(1,100), 0.00005*ones(1,100), 0.00005*ones(1,100), 0.00001*ones(1,100)];
+% config.refsig2 = 1;
+% config.s = 0.3;
+% config.real_ref = 1;
+% config.cap2 = 8;
+% 
+% % (20) good
+% config.Delta2 = 0.0000003;
+% config.Gamma2 = [0.0003*ones(1,100), 0.0001*ones(1,100), 0.00005*ones(1,100), 0.00005*ones(1,100), 0.00001*ones(1,100)];
+% config.refsig2 = 0.01; % decreased
+% config.s = 0.3;
+% config.real_ref = 1;
+% config.cap2 = 8;
+% 
+% % (21) bad
+% config.Delta2 = 0.0000003;
+% config.Gamma2 = [0.0003*ones(1,100), 0.0001*ones(1,100), 0.00005*ones(1,100), 0.00005*ones(1,100), 0.00001*ones(1,100)];
+% config.refsig2 = 0.00001; % decreased
+% config.s = 0.3;
+% config.real_ref = 1;
+% config.cap2 = 8;
+
+% % (22) bad
+% config.Delta2 = 0.0000003;
+% config.Gamma2 = [0.0003*ones(1,100), 0.0001*ones(1,100), 0.00005*ones(1,100), 0.00005*ones(1,100), 0.00001*ones(1,100)] * 0.1; % decreased
+% config.refsig2 = 0.00001;
+% config.s = 0.3;
+% config.real_ref = 1;
+% config.cap2 = 8;

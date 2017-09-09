@@ -1,0 +1,37 @@
+(25) best, refine -> (27) - (29)
+Deltas2 = 0.003;
+Gammas2 = [10 5 1 0.2 0.1];
+10    0.0678 good, very high fluctuations, const epoch>200
+5     0.0800 good, very high fluctuations, const epoch>200
+1     0.0945 bad, const epoch>100
+0.2   0.1734 ok, decreases steadily, but high error
+0.1   0.2245 bad, const epoch>100
+
+
+(27)
+Deltas2 = 0.006;
+Gammas2 = [30 15 10 5];
+
+    0.0822
+    0.0840
+    0.0785
+    0.0872
+
+(28)
+Deltas2 = 0.003;
+Gammas2 = [30 15 10 5];
+
+    0.0880
+    0.0715 good, keeps decreasing
+    0.0698 good, keeps decreasing
+    0.0829
+
+(29)
+Deltas2 = 0.001;
+Gammas2 = [30 15 10 5];
+
+    0.0951
+    0.0684 good, keeps decreasing
+    0.0882
+    0.0744
+
