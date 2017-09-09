@@ -49,7 +49,8 @@ for t = 1:config.batchSize:size(imdb,4)
     end
 
 
-    syn_mats = floor(128*(syn_mat(end).x+1))-config.mean_im;
+    %syn_mats = floor(128*(syn_mat(end).x+1))-config.mean_im;
+    syn_mats = floor(128*(syn_mat(end).x+1)) - repmat(config.mean_im, 1, 1, 1, config.num_syn);
     
 
     %% GPU (en) %%
@@ -89,7 +90,13 @@ for t = 1:config.batchSize:size(imdb,4)
 %         %syn_mats(:,:,:,syn_ind) = find_local_min(net1,config,syn_mats(:,:,:,syn_ind));
 %     end
     
-    syn_mats = langevin_dynamics_gpu(config, net1, syn_mats);
+    if config.use_gpu
+        syn_mats = langevin_dynamics_gpu(config, net1, syn_mats);
+    else
+        for syn_ind = 1:config.num_syn
+            syn_mats(:,:,:,syn_ind) = langevin_dynamics(config,net1,syn_mats(:,:,:,syn_ind));
+        end
+    end
     
     z = langevin_dynamics_gen(config, net2, z, syn_mats);
 
@@ -116,7 +123,11 @@ for t = 1:config.batchSize:size(imdb,4)
 
     dydz_syn = zeros(config.dydz_sz1, 'single');
     dydz_syn(net1.filterSelected) = net1.selectedLambdas;
-    dydz_syn = gpuArray(repmat(dydz_syn,1,1,1,config.num_syn));
+    if config.use_gpu
+        dydz_syn = gpuArray(repmat(dydz_syn,1,1,1,config.num_syn));
+    else
+        dydz_syn = repmat(dydz_syn,1,1,1,config.num_syn);
+    end
     res_syn = [];
 
     res_syn = vl_simplenn(net1, syn_mats, dydz_syn, res_syn, ...
@@ -147,7 +158,8 @@ for t = 1:config.batchSize:size(imdb,4)
         end
     end
 
-    syn_mats = max(min(syn_mats+config.mean_im,255.99),0.01)/128 - 1;
+    %syn_mats = max(min(syn_mats+config.mean_im,255.99),0.01)/128 - 1;
+    syn_mats = max(min(syn_mats+repmat(config.mean_im, 1, 1, 1, config.num_syn),255.99),0.01)/128 - 1;
 
     %% Step 3: Learning net2
     res2 = [];
