@@ -12,13 +12,13 @@ dydz = repmat(dydz, 1, 1, 1, numImages);
 
 for t = 1:config.T
 %     fprintf('Langevin dynamics sampling iteration %d\n', t);
-    % forward-backward to compute df/dI
+%     forward-backward to compute df/dI
 %     N_gaussian = gpuArray(randn(size(syn_mat), 'single'));
     res = vl_simplenn(net, syn_mat, dydz, [], 'conserveMemory', 1, 'cudnn', 1);
     
     % part1: derivative on f(I; w)  part2: gaussian I
-    syn_mat = syn_mat + config.Delta * config.Delta /2 * res(1).dzdx ...  
-        - config.Delta / config.Delta /2 /config.refsig / config.refsig * syn_mat;
+    syn_mat = syn_mat + config.Delta * config.Delta / 2 * res(1).dzdx ...  
+        - config.Delta * config.Delta / 2 /config.refsig / config.refsig * syn_mat;
     
     % part3: white noise N(0, 1)
     syn_mat = syn_mat + config.Delta * gpuArray(randn(size(syn_mat), 'single'));
