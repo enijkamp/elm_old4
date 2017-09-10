@@ -1,4 +1,4 @@
-function [] = exp_texture_256_4()
+function [] = exp_texture_256_6()
 
 rng(123);
 
@@ -14,14 +14,14 @@ compile_convnet = 0;
 % setup convnet
 setup_convnet(use_gpu, compile_convnet);
 
-% (4) after langevin fix
+% (6) after langevin fix
 num = 1;
-Deltas2 = 0.0003; %[0.003 0.0003];
+Deltas2 = 0.00000003; %[0.003 0.0003 0.000003 0.00000003];
 Gammas2 = [5 10 20];
 for Delta2 = Deltas2
     for Gamma2 = Gammas2
         % prep
-        prefix = [img_name '/' num2str(img_size) '_4_' num2str(num) '/'];
+        prefix = [img_name '/' num2str(img_size) '_6_' num2str(num) '/'];
         [config, net1] = train_coop_config();
         config = prep_images(config, ['../data/' img_name '/' num2str(img_size) '/'], patch_size);
         config = prep_dirs(config, prefix);

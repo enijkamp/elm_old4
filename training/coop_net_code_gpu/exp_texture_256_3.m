@@ -4,7 +4,7 @@ rng(123);
 
 % config
 img_name = 'ivy2';
-img_size = 512;
+img_size = 256;
 patch_size = 32;
 
 % setup
@@ -14,7 +14,7 @@ compile_convnet = 0;
 % setup convnet
 setup_convnet(use_gpu, compile_convnet);
 
-% (30) refine (29)
+% (3) after langevin fix
 num = 1;
 Deltas2 = 0.003; %[0.003 0.0003];
 Gammas2 = [5 10 20];
