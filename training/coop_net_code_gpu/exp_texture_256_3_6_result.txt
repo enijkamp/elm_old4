@@ -1,0 +1,36 @@
+Deltas2 = [0.003 0.0003 0.000003 0.00000003];
+Gammas2 = [5 10 20];
+
+Loss
+(3)
+    0.0575
+    0.0595
+    0.0635
+
+(4)
+    0.0460
+    0.0592
+    0.0798
+
+(5)
+    0.0539
+    0.0538
+    0.0668
+
+(6)
+    0.0486
+    0.0426
+    0.0540
+
+Exp  Delta2     Gamma2   Remark
+4_1  0.0003     5        good -> more fluctuation in tail could decrease error further (more epochs)
+6_1  0.00000003 5        good -> less fluctuation in tail
+6_2  0.00000003 10       good
+
+decreasing Delta2 decreased fluctuations in tail
+
+descriptor synthesis does not look good
+
+generator seems to be trained well with 512 settings
+
+-> change descriptor net1 params
