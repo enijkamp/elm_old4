@@ -11,7 +11,7 @@ patch_size = 32;
 use_gpu = 1;
 compile_convnet = 0;
 
-% setup convnet
+% setup
 setup_convnet(use_gpu, compile_convnet);
 
 % (7) change net1 params
