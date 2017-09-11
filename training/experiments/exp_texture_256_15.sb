@@ -6,7 +6,7 @@
 #SBATCH --export=ALL
 #SBATCH --gres=gpu:k80:1
 #SBATCH -t 24:00:00
-#SBATCH -A sds154
+#SBATCH -A cla173
 
 #ibrun in verbose mode will give binding detail
 
