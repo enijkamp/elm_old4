@@ -1,0 +1,7 @@
+Deltas = [0.3 0.03 0.003 0.0003];
+Gammas = [0.01 0.1 1 10 100];
+
+Only (7) useful with 
+
+Deltas = 0.3
+Gammas = [0.01 0.1 1 10 100];
