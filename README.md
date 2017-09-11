@@ -1,14 +1,14 @@
-# elm_old4
+# elm_train
 
 Code and results for training step. Mirror of comet.
 
 Training:
 
-https://github.com/enijkamp/elm_old4
+https://github.com/enijkamp/elm_train
 
 Mapping:
 
-https://github.com/enijkamp/elm_map0
+https://github.com/enijkamp/elm_map
 
 Rewrite:
 
