@@ -35,7 +35,7 @@ for Delta = Deltas
             config.im_size = patch_size;
             config.file_str = [img_name '/'];
             config.use_gpu = use_gpu;
-            config.nIteration = 200;   
+            config.nIteration = 300;   
             config.batchSize = 50;
 
             % sampling parameters
